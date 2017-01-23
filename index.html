@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Prologue of Ohrid</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5">
+    <script type="text/javascript" src="/moment.js"></script>
+    <style>
+      body {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      #reading {
+        height: 5000px;
+        width:100%;
+        border: none;
+      }
+      header h1 {
+        font-size: 2.3em;
+      }
+      #calendar {
+        float: right;
+        display: inline-block;
+        position: relative;
+        bottom: 50px;
+      }
+
+      #date-card {
+        font-family: "Courier New", mono;
+        text-align: center;
+      }
+      #back, #forward {
+        font-size: 2em;
+        font-style: bolder;
+        display: inline-block;
+        padding: 0px 110px 0px 110px;
+        position: relative;
+        bottom: 24px;
+      }
+      #date {
+        position: relative;
+        top: 24px;
+      }
+
+      #clear {
+        clear: both;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Prologue of Ohrid</h1>
+      <select id="calendar">
+        <option value="new">New Calendar</option>
+        <option value="old">Old Calendar</option>
+      </select>
+    </header>
+
+    <div id="clear"></div>
+
+    <div id="date-card">
+      <p id="date"></p>
+      <div id="back">&larr;</div>
+      <div id="forward">&rarr;</div>
+      <iframe id="reading" scrolling="no"></iframe>
+    </div>
+    
+    <script>
+      var readingEl = document.getElementById('reading');
+      var dateEl = document.getElementById('date');
+      var backEl = document.getElementById('back');
+      var forwardEl = document.getElementById('forward');
+      var calendarEl = document.getElementById('calendar');
+
+      var date = moment();
+
+      function loadForDate(d) {
+        readingEl.src = "http://98.131.104.126/prolog/" + date.format("MMMM") + date.date() + ".htm";
+        dateEl.innerHTML = date.format("MMMM") + " " + date.date() + ", " + date.year();
+      }
+
+      function back() {
+        setDate(1, false)
+      }
+
+      function forward() {
+        setDate(1, true)
+      }
+
+      function calendar() {
+        var cookie = getCookie("cal");
+        var options = calendarEl.options;
+        var i = calendarEl.selectedIndex;
+
+        for(var i = 0, j = options.length; i < j; ++i) {
+            if(options[i].value === cookie) {
+               options.selectedIndex = i;
+               break;
+            }
+        }
+
+        if (cookie === "new") {
+          setCookie("cal", "new", 1001);
+
+          if (date.date() === moment().subtract(13, 'days').date()) {
+            setDate(13, true);
+          }
+
+          return "new";
+
+        } else if (cookie === "old") {
+          setCookie("cal", "old", 1001);
+
+          if (date.date() === moment().date()) {
+            setDate(13, false);
+          }
+
+          return "old";
+        }
+      }
+
+      function changeCalendar() {
+        var options = calendarEl.options;
+        var i = calendarEl.selectedIndex;
+
+        if (i >= 0 && options[i].value === "new") {
+          setCookie("cal", "new", 1001);
+          setDate(13, true);
+          return "new";
+        } else {
+          setCookie("cal", "old", 1001);
+          setDate(13, false);
+          return "old";
+        }
+      }
+
+      function setCookie(cname, cvalue, exdays) {
+          var d = new Date();
+          d.setTime(d.getTime() + (exdays*24*60*60*1000));
+          var expires = "expires="+ d.toUTCString();
+          document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+      function getCookie(cname) {
+          var name = cname + "=";
+          var decodedCookie = decodeURIComponent(document.cookie);
+          var ca = decodedCookie.split(';');
+          for(var i = 0; i <ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) == ' ') {
+                  c = c.substring(1);
+              }
+              if (c.indexOf(name) == 0) {
+                  return c.substring(name.length, c.length);
+              }
+          }
+          return "";
+      }
+
+      function setDate(days, add) {
+        if (add) {
+          date.add(days, 'days');
+        } else {
+          date.subtract(days, 'days');
+        }
+
+        loadForDate(date);
+      }
+      
+      calendar();
+      loadForDate(date);
+
+      backEl.addEventListener("click", back);
+      forwardEl.addEventListener("click", forward);
+      calendarEl.addEventListener("change", changeCalendar);
+      
+    </script>
+  </body>
+</html>
+
