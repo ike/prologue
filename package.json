@@ -1,0 +1,14 @@
+{
+  "name": "Prologue",
+  "version": "0.1.0",
+  "repository": "http://github.com/ike/prologue",
+  "lang": "en",
+  "devDependencies": {},
+  "scripts": {
+    "dev": "next"
+  },
+  "dependencies": {
+    "next": "^1.2.3"
+  },
+  "license": "AGPL-3.0"
+}
