@@ -1,11 +1,17 @@
 import React from 'react'
 import Head from 'next/head'
 
+import { createStore } from 'redux'
+
+import prologueApp from '../reducers'
+
 import CalendarPicker from '../components/calendarpicker'
 import DateNav from '../components/datenav'
 import Reading from '../components/reading'
 
-export default () => (
+let store = createStore(prologueApp)
+
+const Index = () => (
   <div>
     <Head>
       <title>Prologue of Ohrid</title>
@@ -25,3 +31,5 @@ export default () => (
 
   </div>
 )
+
+export default Index
