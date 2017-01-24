@@ -9,7 +9,7 @@ function calendar(state = initialState, action) {
   switch(action.type) {
     case CHANGE_CALENDAR:
       return Object.assign({}, state, {
-        calendar: action.calendar
+        calendar: action.calendar.toString()
       })
     default:
       return state

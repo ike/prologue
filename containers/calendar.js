@@ -7,15 +7,13 @@ const getCalendar = (calendar) => {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    calendar: getCalendar(state.calendar)
-  }
+  return getCalendar(state.calendar)
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onChange: (value) => {
-      dispatch(changeCalendar(value))
+    onChange: (event) => {
+      dispatch(changeCalendar(event.target.value))
     }
   }
 }
