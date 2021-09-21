@@ -71,7 +71,7 @@
       <div id="forward">&rarr;</div>
       <iframe id="reading" scrolling="no"></iframe>
     </div>
-    
+
     <script>
       var readingEl = document.getElementById('reading');
       var dateEl = document.getElementById('date');
@@ -82,7 +82,7 @@
       var date = moment();
 
       function loadForDate(d) {
-        readingEl.src = "http://98.131.104.126/prolog/" + date.format("MMMM") + date.date() + ".htm";
+        readingEl.src = "/days/" + date.format("MMMM") + ' ' + date.date() + ".html";
         dateEl.innerHTML = date.format("MMMM") + " " + date.date() + ", " + date.year();
       }
 
@@ -173,14 +173,14 @@
 
         loadForDate(date);
       }
-      
+
       calendar();
       loadForDate(date);
 
       backEl.addEventListener("click", back);
       forwardEl.addEventListener("click", forward);
       calendarEl.addEventListener("change", changeCalendar);
-      
+
     </script>
   </body>
 </html>
