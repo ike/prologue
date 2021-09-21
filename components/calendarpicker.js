@@ -1,12 +1,19 @@
 import React, { PropTypes } from 'react'
-import moment from 'moment'
 
 const CalendarPicker = ({ calendar, onChange }) => (
   <div>
-  <select id="calendar" value={ calendar } onChange={ onChange }>
+  <select value={ calendar } onChange={ onChange }>
     <option value="new">New Calendar</option>
     <option value="old">Old Calendar</option>
   </select>
+    <style jsx>{`
+      select {
+        float: right;
+        display: inline-block;
+        position: relative;
+        bottom: 50px;
+      }
+    `}</style>
   </div>
 )
 

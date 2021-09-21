@@ -8,10 +8,12 @@ import App from '../components/app'
 
 let store = createStore(prologueApp)
 
-export default () => (
+const Index = () => (
   <Provider store={ store } >
 
     <App />
 
   </Provider>
 )
+
+export default Index

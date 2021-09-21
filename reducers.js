@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import { Calendars, CHANGE_CALENDAR } from './actions'
 
 const initialState = {
-  calendar: Calendars.OLD
+  calendar: Calendars.OLD,
+  date: new Date()
 }
 
 function calendar(state = initialState, action) {
@@ -16,8 +17,16 @@ function calendar(state = initialState, action) {
   }
 }
 
+function date(state = initialState, action) {
+  switch(action.type) {
+    default:
+      return state
+  }
+}
+
 const prologueApp = combineReducers({
-  calendar
+  calendar,
+  date
 })
 
 export default prologueApp

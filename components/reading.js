@@ -1,5 +1,16 @@
 import React from 'react'
 
-export default () => (
-  <iframe id="reading" scrolling="no"></iframe>
+const Reading = ({ url }) => (
+  <div>
+    <iframe src={ url } scrolling="no"></iframe>
+    <style jsx>{`
+      iframe {
+        height: 5000px;
+        width:100%;
+        border: none;
+      }
+      `}</style>
+  </div>
 )
+
+export default Reading

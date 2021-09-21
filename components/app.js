@@ -2,8 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 
 import Calendar from '../containers/calendar'
-import DateNav from '../components/datenav'
-import Reading from '../components/reading'
+import Date from '../containers/date'
 
 const App = () => (
   <div>
@@ -18,8 +17,20 @@ const App = () => (
 
     <h1>Prologue from Ohrid</h1>
     <Calendar />
-    <DateNav />
-    <Reading />
+    <div id="clear"></div>
+    <Date />
+    <style jsx>{`
+          body {
+            max-width: 600px;
+            margin: 0 auto;
+          }
+          h1 {
+            font-size: 2.3em;
+          }
+          #clear {
+            clear: both;
+          }
+        `}</style>
   </div>
 )
 
